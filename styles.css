@@ -1,0 +1,476 @@
+/* ==========================================================
+   Linux Cheatsheet — styles
+   Тёмная тема по умолчанию, адаптивная сетка, без библиотек
+   ========================================================== */
+
+:root {
+  --bg: #0d1117;
+  --bg-elevated: #161b22;
+  --surface: #1c2128;
+  --border: #30363d;
+  --border-hover: #484f58;
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  --accent: #3fb950;
+  --accent-soft: rgba(63, 185, 80, 0.14);
+  --code-text: #7ee787;
+  --danger: #f85149;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --gap: clamp(1rem, 2.5vw, 1.5rem);
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration: 280ms;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code", Menlo, Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(1200px 500px at 50% -200px, rgba(63, 185, 80, 0.08), transparent 70%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, p, ul {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+code, kbd {
+  font-family: var(--font-mono);
+}
+
+.container {
+  width: min(1200px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: #000;
+  border-radius: var(--radius-sm);
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  padding: clamp(2rem, 6vw, 4rem) 0 clamp(1.5rem, 4vw, 2.5rem);
+  text-align: center;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand__prompt {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  color: var(--accent);
+  animation: blink 1.2s steps(1) infinite;
+}
+
+.brand__title {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.site-header__lead {
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+}
+
+@keyframes blink {
+  50% { opacity: 0.35; }
+}
+
+/* ---------- Search ---------- */
+
+.search {
+  position: relative;
+  display: block;
+  max-width: 640px;
+  margin: 1.75rem auto 0;
+}
+
+.search__icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+.search__input {
+  width: 100%;
+  padding: 0.95rem 3rem 0.95rem 2.9rem;
+  font: inherit;
+  color: var(--text);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.search__input::placeholder {
+  color: var(--text-muted);
+}
+
+.search__input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.search__input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.search__hint {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.1rem 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  pointer-events: none;
+  transition: opacity var(--duration) var(--ease);
+}
+
+.search__input:focus ~ .search__hint,
+.search__input:not(:placeholder-shown) ~ .search__hint {
+  opacity: 0;
+}
+
+.search__status {
+  min-height: 1.5em;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Grid & cards ---------- */
+
+main {
+  flex: 1;
+  padding-bottom: 3rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 480px), 1fr));
+  gap: var(--gap);
+  align-items: start;
+}
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: clamp(1rem, 3vw, 1.5rem);
+  transition:
+    opacity var(--duration) var(--ease),
+    transform var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+}
+
+/* Плавное скрытие карточки: сначала fade, затем display:none из JS */
+.card.is-hiding {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+.card.is-hidden {
+  display: none;
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.card__badge {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: var(--radius-sm);
+}
+
+.card__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ---------- Commands ---------- */
+
+.cmd-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Трюк с grid-template-rows: 1fr -> 0fr даёт плавную анимацию высоты */
+.cmd {
+  display: grid;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition:
+    grid-template-rows var(--duration) var(--ease),
+    opacity var(--duration) var(--ease);
+}
+
+.cmd.is-hidden {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cmd__inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.cmd + .cmd .cmd__inner {
+  border-top: 1px dashed transparent;
+}
+
+.cmd__row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.6rem;
+}
+
+.cmd__code {
+  flex: 1;
+  min-width: 0;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.92rem;
+  color: var(--code-text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: thin;
+}
+
+.cmd__code::before {
+  content: "$ ";
+  color: var(--text-muted);
+  user-select: none;
+}
+
+.cmd__desc {
+  margin: 0.35rem 0 0.6rem 0.2rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.cmd__desc code,
+kbd {
+  padding: 0.05rem 0.35rem;
+  font-size: 0.85em;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+mark {
+  color: inherit;
+  background: rgba(210, 153, 34, 0.35);
+  border-radius: 2px;
+}
+
+/* ---------- Copy button ---------- */
+
+.copy-btn {
+  flex-shrink: 0;
+  min-width: 7.5rem;
+  padding: 0.55rem 0.9rem;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    background var(--duration) var(--ease),
+    border-color var(--duration) var(--ease),
+    color var(--duration) var(--ease),
+    transform 120ms var(--ease);
+}
+
+.copy-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.copy-btn:active {
+  transform: scale(0.96);
+}
+
+.copy-btn.is-copied {
+  color: #000;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.copy-btn.is-error {
+  color: #fff;
+  background: var(--danger);
+  border-color: var(--danger);
+}
+
+/* ---------- Empty state, footer, toast ---------- */
+
+.empty-state {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  animation: fade-in var(--duration) var(--ease);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+}
+
+.site-footer {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  padding: 0.65rem 1.1rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: translate(-50%, 1rem);
+  pointer-events: none;
+  transition: opacity var(--duration) var(--ease), transform var(--duration) var(--ease);
+  max-width: calc(100% - 2rem);
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 520px) {
+  .cmd__row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .copy-btn {
+    width: 100%;
+  }
+
+  .search__hint {
+    display: none;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0ms !important;
+  }
+}

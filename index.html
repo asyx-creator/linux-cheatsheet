@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Интерактивная шпаргалка по базовым командам Linux">
+  <meta name="color-scheme" content="dark">
+  <title>Linux Cheatsheet — шпаргалка по командам</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <span class="brand__prompt" aria-hidden="true">$_</span>
+        <h1 class="brand__title">Linux Cheatsheet</h1>
+      </div>
+      <p class="site-header__lead">Базовые команды терминала — копируйте в один клик.</p>
+
+      <search class="search" role="search">
+        <label for="search-input" class="visually-hidden">Поиск по командам</label>
+        <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-3.5-3.5" />
+        </svg>
+        <input
+          id="search-input"
+          class="search__input"
+          type="search"
+          placeholder="Найти команду: chmod, процессы, сеть…"
+          autocomplete="off"
+          spellcheck="false"
+        >
+        <kbd class="search__hint" aria-hidden="true">/</kbd>
+      </search>
+      <p class="search__status" id="search-status" aria-live="polite"></p>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <div class="grid" id="cards">
+
+      <!-- Управление файлами -->
+      <article class="card" data-category="файлы files директории папки">
+        <header class="card__header">
+          <span class="card__badge" aria-hidden="true">01</span>
+          <h2 class="card__title">Управление файлами</h2>
+        </header>
+        <ul class="cmd-list">
+          <li class="cmd" data-keywords="список содержимое директории показать файлы list">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">ls -la</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Список файлов, включая скрытые, с подробностями</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="перейти сменить директорию каталог change directory">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">cd /path/to/dir</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Перейти в указанную директорию (<code>cd ~</code> — домой)</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="создать папку директорию make directory">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">mkdir -p new/dir</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Создать директорию вместе с родительскими</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="удалить файл папку remove delete">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">rm -r folder</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Удалить директорию рекурсивно. Осторожно: без корзины</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="копировать скопировать файл copy">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">cp -r src dest</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Скопировать файл или директорию</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="переместить переименовать move rename">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">mv old.txt new.txt</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Переместить или переименовать файл</p>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Права доступа -->
+      <article class="card" data-category="права доступа permissions безопасность">
+        <header class="card__header">
+          <span class="card__badge" aria-hidden="true">02</span>
+          <h2 class="card__title">Права доступа</h2>
+        </header>
+        <ul class="cmd-list">
+          <li class="cmd" data-keywords="права режим исполняемый permissions mode">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">chmod 755 script.sh</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">rwx для владельца, r-x для группы и остальных</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="права исполняемый запуск execute">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">chmod +x script.sh</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Сделать файл исполняемым</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="права рекурсивно директория recursive">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">chmod -R 644 dir/</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Рекурсивно выставить rw-r--r--</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="владелец сменить owner пользователь группа">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">chown user:group file</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Сменить владельца и группу файла</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="владелец рекурсивно owner recursive">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">sudo chown -R user dir/</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Рекурсивно сменить владельца директории</p>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Система и процессы -->
+      <article class="card" data-category="система процессы system processes мониторинг">
+        <header class="card__header">
+          <span class="card__badge" aria-hidden="true">03</span>
+          <h2 class="card__title">Система и процессы</h2>
+        </header>
+        <ul class="cmd-list">
+          <li class="cmd" data-keywords="мониторинг нагрузка cpu процессор monitor">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">top</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Процессы и нагрузка в реальном времени (выход — <kbd>q</kbd>)</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="список процессов все process list">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">ps aux</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Все запущенные процессы всех пользователей</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="найти процесс поиск grep find process">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">ps aux | grep nginx</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Найти процесс по имени</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="завершить убить процесс остановить terminate stop">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">kill 1234</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Корректно завершить процесс по PID (SIGTERM)</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="принудительно убить процесс force sigkill">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">kill -9 1234</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Принудительно завершить процесс (SIGKILL)</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="диск место свободно disk space">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">df -h</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Свободное место на дисках в удобном формате</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="память оперативная ram memory swap">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">free -h</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Использование оперативной памяти и swap</p>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Сеть -->
+      <article class="card" data-category="сеть network интернет">
+        <header class="card__header">
+          <span class="card__badge" aria-hidden="true">04</span>
+          <h2 class="card__title">Сеть</h2>
+        </header>
+        <ul class="cmd-list">
+          <li class="cmd" data-keywords="проверить доступность соединение хост connectivity">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">ping -c 4 google.com</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Проверить доступность хоста (4 пакета)</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="запрос http скачать загрузить request download api">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">curl -I https://example.com</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Получить только HTTP-заголовки ответа</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="скачать файл загрузить download save">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">curl -O https://example.com/file.zip</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Скачать файл с сохранением исходного имени</p>
+            </div>
+          </li>
+          <li class="cmd" data-keywords="ip адрес интерфейсы сетевые address interfaces ifconfig">
+            <div class="cmd__inner">
+              <div class="cmd__row">
+                <code class="cmd__code">ip a</code>
+                <button class="copy-btn" type="button">Копировать</button>
+              </div>
+              <p class="cmd__desc">Сетевые интерфейсы и их IP-адреса</p>
+            </div>
+          </li>
+        </ul>
+      </article>
+
+    </div>
+
+    <p class="empty-state" id="empty-state" hidden>
+      Ничего не найдено. Попробуйте другой запрос.
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Нажмите <kbd>/</kbd> для поиска, <kbd>Esc</kbd> — очистить.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
