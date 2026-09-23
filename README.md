@@ -21,3 +21,8 @@ python3 -m http.server 8000
 ```
 
 Откройте http://localhost:8000 или просто `index.html` в браузере.
+
+## Авторы
+
+- [@asyx-creator](https://github.com/asyx-creator) — автор проекта
+- Perplexity Computer — AI-ассистент, помогал с разработкой
