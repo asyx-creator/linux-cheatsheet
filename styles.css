@@ -446,6 +446,102 @@ mark {
   transform: translate(-50%, 0);
 }
 
+/* ---------- FX ---------- */
+
+.fx-lock,
+.fx-lock body {
+  overflow: hidden;
+}
+
+.fx-quake .site-header,
+.fx-quake main,
+.fx-quake .site-footer {
+  animation: fx-quake 1.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+.fx-jolt .site-header,
+.fx-jolt main,
+.fx-jolt .site-footer {
+  animation: fx-jolt 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes fx-quake {
+  0%   { transform: translate(0, 0) rotate(0); }
+  10%  { transform: translate(-2px, 1px) rotate(-0.3deg); }
+  20%  { transform: translate(3px, -2px) rotate(0.4deg); }
+  30%  { transform: translate(-4px, 3px) rotate(-0.6deg); }
+  40%  { transform: translate(6px, -3px) rotate(0.8deg); }
+  50%  { transform: translate(-8px, 4px) rotate(-1deg); }
+  60%  { transform: translate(10px, -5px) rotate(1.2deg); }
+  70%  { transform: translate(-12px, 6px) rotate(-1.5deg); }
+  80%  { transform: translate(14px, -6px) rotate(1.8deg); }
+  90%  { transform: translate(-16px, 8px) rotate(-2deg); }
+  100% { transform: translate(0, 0) rotate(0); }
+}
+
+@keyframes fx-jolt {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-14px, 8px); }
+  40%  { transform: translate(12px, -6px); }
+  60%  { transform: translate(-8px, 4px); }
+  80%  { transform: translate(4px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+.fx-glitch .card {
+  text-shadow: 2px 0 rgba(255, 0, 80, 0.45), -2px 0 rgba(0, 220, 255, 0.45);
+  filter: saturate(1.3) contrast(1.1);
+}
+
+.fx-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fx-cracks,
+.fx-flash {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fx-flash {
+  background: #fff;
+  opacity: 0;
+}
+
+.fx-hero {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.55));
+}
+
+.fx-hero svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.fx-panic {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  margin: 0;
+  padding: 1rem;
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 2.4vw, 1.05rem);
+  color: var(--accent);
+  white-space: pre-wrap;
+  text-align: left;
+}
+
 /* ---------- Mobile ---------- */
 
 @media (max-width: 520px) {
